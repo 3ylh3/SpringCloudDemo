@@ -1,4 +1,4 @@
-package com.example.provider.controller;
+package com.example.providerone.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class SayHelloController {
     @RequestMapping("/sayHello")
     public String sayHello() {
-        return "hello";
+        return "Hello, I am provider one";
     }
 }

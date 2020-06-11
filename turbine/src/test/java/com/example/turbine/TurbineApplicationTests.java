@@ -1,10 +1,10 @@
-package com.example.provider;
+package com.example.turbine;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ProviderApplicationTests {
+class TurbineApplicationTests {
 
     @Test
     void contextLoads() {
