@@ -2,6 +2,7 @@ package com.example.zuul.filter;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -17,9 +18,9 @@ import org.springframework.stereotype.Component;
 public class Filter extends ZuulFilter {
 
     private static final String FILTER_TYPE = "pre";
-    private static final int CREATE_TOKEN_RATE = 1000;
-    private static final int MAX_TOKEN_NUM = 2000;
-    private int tokenNums = MAX_TOKEN_NUM;
+    @Value("${max-token-nums}")
+    private int MAX_TOKEN_NUMS;
+    private int tokenNums = MAX_TOKEN_NUMS;
 
     @Override
     public String filterType() {
@@ -51,9 +52,9 @@ public class Filter extends ZuulFilter {
         return null;
     }
 
-    @Scheduled(fixedRate = CREATE_TOKEN_RATE)
+    @Scheduled(fixedRate = 1000)
     public synchronized void createToken() {
-        if(tokenNums < MAX_TOKEN_NUM) {
+        if(tokenNums < MAX_TOKEN_NUMS) {
             tokenNums++;
         }
     }
